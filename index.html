@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#2b1d1a">
+<title>2 Romantic Days in Mexico City</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6f1; --card:#fff; --ink:#2b1d1a; --muted:#7a6a63; --line:#ece3da;
+  --rose:#c2456b; --rose-soft:#fbe9ee; --jade:#2f7d6d; --jade-soft:#e3f2ee;
+  --gold:#c98a2b; --gold-soft:#fcf1df;
+  --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#171211;--card:#221b19;--ink:#f3ebe5;--muted:#a8978f;--line:#352b28;
+  --rose:#e8789a;--rose-soft:#3a2129;--jade:#6cc1ad;--jade-soft:#1b302b;--gold:#e5ad5a;--gold-soft:#33281a}
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,-apple-system,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;margin:0;letter-spacing:-.01em}
+a{color:var(--rose)}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  padding:calc(var(--safe-t) + 12px) 16px 0}
+header h1{font-size:20px}
+header .sub{font-size:12.5px;color:var(--muted);margin:2px 0 10px}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px;margin:0 -16px;padding-left:16px;padding-right:16px}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px Inter,sans-serif;
+  padding:8px 14px;border-radius:999px;cursor:pointer}
+nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+main{max-width:640px;margin:0 auto;padding:16px 16px calc(var(--safe-b) + 40px)}
+section{display:none}section.on{display:block;animation:f .25s ease}
+@keyframes f{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+.hero{background:linear-gradient(135deg,var(--rose),#8e3b5c 60%,var(--gold));color:#fff;border-radius:20px;padding:22px 20px;margin-bottom:16px}
+.hero h2{font-size:26px;line-height:1.15}
+.hero p{margin:10px 0 0;opacity:.93;font-size:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.card h3{font-size:18px;margin-bottom:6px}
+.label{font:600 11px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:22px 0 8px}
+.label:first-child{margin-top:4px}
+.pill{display:inline-block;font:600 11.5px Inter,sans-serif;padding:3px 9px;border-radius:999px;margin:0 4px 4px 0}
+.p-rose{background:var(--rose-soft);color:var(--rose)}.p-jade{background:var(--jade-soft);color:var(--jade)}.p-gold{background:var(--gold-soft);color:var(--gold)}
+ul{padding-left:18px;margin:6px 0}li{margin:4px 0}
+.muted{color:var(--muted);font-size:14px}
+/* timeline */
+.tl{position:relative;padding-left:22px}
+.tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.stop{position:relative;margin-bottom:12px}
+.stop .dot{position:absolute;left:-22px;top:18px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--rose)}
+.stop.done .dot{background:var(--jade);border-color:var(--jade)}
+.stop.done .card{opacity:.55}
+.time{font:600 13px Inter,sans-serif;color:var(--rose)}
+.stop h3{font-size:17px;margin:2px 0 4px}
+.where{font-size:13.5px;color:var(--muted)}
+.row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font:500 13.5px Inter,sans-serif;padding:8px 12px;border-radius:10px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink);text-decoration:none;cursor:pointer}
+.btn.check.on{background:var(--jade-soft);color:var(--jade);border-color:transparent}
+details{margin-top:8px}
+summary{cursor:pointer;font-weight:500;font-size:14px;color:var(--rose);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"＋ "}details[open] summary:before{content:"－ "}
+.note{background:var(--gold-soft);border-radius:12px;padding:10px 12px;font-size:14px;margin-top:8px}
+.alt{background:var(--jade-soft);border-radius:12px;padding:10px 12px;font-size:14px;margin-top:8px}
+.coffee{display:flex;gap:12px;align-items:flex-start}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--rose-soft);color:var(--rose);display:grid;place-items:center;font:600 14px Fraunces,serif}
+.five li{margin:10px 0}
+.foot{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;font-style:italic}
+</style>
+</head>
+<body>
+<header>
+  <h1>Slow &amp; Romantic · CDMX</h1>
+  <div class="sub">Slow mornings · great coffee · leafy walks · time to talk</div>
+  <nav id="nav">
+    <button data-v="overview">Overview</button>
+    <button data-v="day-1">Day 1</button>
+    <button data-v="day-2">Day 2</button>
+    <button data-v="coffee">Coffee</button>
+    <button data-v="outdoors">Outdoors</button>
+    <button data-v="tips">Tips</button>
+    <button data-v="backup">Backup</button>
+  </nav>
+</header>
+
+<main>
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="hero">
+    <h2>A Slow, Romantic 2 Days in Mexico City</h2>
+    <p>Day 1 stays in one calm, walkable bubble — Roma Norte + Condesa — ending with a tree-lined dinner. Day 2 is the quiet classic: Coyoacán and a slow Centro afternoon. If it means a 45-minute queue or feeling rushed, drop it — the goal is conversation, not a checklist.</p>
+  </div>
+
+  <div class="label">If you only do five things</div>
+  <div class="card"><ol class="five" style="padding-left:20px;margin:0">
+    <li><b>Cardinal (Condesa)</b> — morning coffee + banana bread, then sit by Parque México.</li>
+    <li><b>Café El Jarocho</b> — café de olla in a clay cup, standing with the neighbourhood.</li>
+    <li><b>Golden hour on Álvaro Obregón</b> — no agenda, just the two of you and the light.</li>
+    <li><b>Dinner at Casa Virginia</b> (or Hugo to sit outside). Reserve.</li>
+    <li><b>Blue-hour Coyoacán</b> — a last small coffee and the old streets going quiet.</li>
+  </ol>
+  <p class="muted" style="margin:10px 0 0">…and a 60–90 minute pocket every day where you do absolutely nothing on purpose.</p></div>
+
+  <div class="label">The neighbourhoods</div>
+  <div class="card"><h3>Roma Norte</h3><span class="pill p-rose">Day 1</span>
+    <p class="muted" style="margin:4px 0 0">Leafy boulevards, galleries, the densest specialty coffee in the city. Calmest before 10 am and after 3 pm.</p></div>
+  <div class="card"><h3>Condesa</h3><span class="pill p-rose">Day 1</span>
+    <p class="muted" style="margin:4px 0 0">Ten minutes west across Insurgentes. Curved streets, jacarandas, Parque México as its living room.</p></div>
+  <div class="card"><h3>Coyoacán</h3><span class="pill p-jade">Day 2</span>
+    <p class="muted" style="margin:4px 0 0">The warm colonial heart — El Jarocho, the 1910 park, the blue-hour Casa Azul.</p></div>
+  <div class="card"><h3>Centro Histórico</h3><span class="pill p-jade">Day 2</span>
+    <p class="muted" style="margin:4px 0 0">Markets, fountains, Bellas Artes. Beautiful but busier — used lightly.</p></div>
+
+  <div class="label">Coffee prices (2026, rough)</div>
+  <div class="card"><ul style="margin:0">
+    <li>Specialty espresso: ~$45–70 MXN</li>
+    <li>Flat white / cappuccino: ~$60–95 MXN</li>
+    <li>Café de olla / americano (traditional): ~$25–45 MXN</li>
+    <li>250 g bag of single-origin beans: ~$220–400 MXN</li>
+  </ul><div class="note">💵 Carry some cash — Café Villarías and El Jarocho are cash-only.</div></div>
+</section>
+
+<!-- DAY 1 -->
+<section id="day-1">
+  <div class="hero" style="background:linear-gradient(135deg,#b4466a,#d07a4a)">
+    <h2>Day 1 — Roma Norte &amp; Condesa</h2>
+    <p>The leafy day. One comfortable walking loop. If your hotel is far, metro to Insurgentes (Line 1/2/7) and walk the rest.</p>
+  </div>
+  <div class="tl" id="tl1"></div>
+</section>
+
+<!-- DAY 2 -->
+<section id="day-2">
+  <div class="hero" style="background:linear-gradient(135deg,#2f7d6d,#3d5a8a)">
+    <h2>Day 2 — Coyoacán &amp; the historic centre</h2>
+    <p>The traditional day. Rideshare Roma → Coyoacán is ~20–30 min. One big Coyoacán block, then a calmer Centro afternoon.</p>
+  </div>
+  <div class="tl" id="tl2"></div>
+
+  <div class="label">The Coyoacán ritual</div>
+  <div class="card">
+    <h3>☕ Café El Jarocho</h3>
+    <div class="where">Cuauhtémoc &amp; Ignacio Allende 134, Coyoacán · opens ~6 am (often late/24h — confirm) · $ · cash</div>
+    <p style="font-size:15px">Founded 1953. No tables, no pretension: order a café de olla (clay pot, piloncillo, cinnamon, clove) through a window and drink it on the sidewalk with the rest of Coyoacán. Benches out front.</p>
+    <ul><li><b>Order:</b> café de olla (hot or iced) + a churro or the donuts. ~$80 for two coffees + a pastry.</li>
+    <li><b>When:</b> ~8 am to start Day 2 (a few blocks from Avellaneda — do both), or as the last note of the night.</li></ul>
+    <div class="row"><a class="btn" href="https://maps.apple.com/?q=Caf%C3%A9+El+Jarocho+Coyoac%C3%A1n+CDMX">📍 Apple Maps</a>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+El+Jarocho+Coyoac%C3%A1n+CDMX">🗺 Google Maps</a></div>
+  </div>
+</section>
+
+<!-- COFFEE -->
+<section id="coffee">
+  <div class="label">Your coffee map — 7 stops</div>
+  <div id="coffeelist"></div>
+  <div class="card"><h3>Backups</h3><p class="muted" style="margin:0">Camino a Comala (Condesa) · Chiquitito (Condesa) · Café Nin (Juárez)</p></div>
+  <p class="muted">Two traditional café de olla stops plus specialty pours — a real cross-section of how Mexico drinks coffee.</p>
+</section>
+
+<!-- OUTDOORS -->
+<section id="outdoors">
+  <div class="label">Quiet places to sit, walk &amp; people-watch</div>
+  <div id="outlist"></div>
+  <div class="note">🌸 Mid-to-late March: Parque México and Av. Amsterdam are at full purple jacaranda bloom — time Day 1's walk for it.</div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="label">Reservations (book 3–7 days ahead)</div>
+  <div class="card"><ol style="padding-left:20px;margin:0">
+    <li><b>Casa Virginia</b>, Day 1 dinner, corner table for two — <span class="pill p-rose">non-negotiable</span><br><span class="muted">Or Havre 77 / Sud 777 if splurging (Sud 777 = weeks ahead).</span></li>
+    <li><b>Casa Azul</b> 5:30–6:30 pm slot, if you want Frida (reshapes Day 2).</li>
+    <li><b>Pink / Coyoacán dinner</b> — usually fine same-day; call ahead.</li>
+  </ol></div>
+
+  <div class="label">Beat the crowds</div>
+  <div class="card"><ul style="margin:0">
+    <li><b>Cafés:</b> before 10 am or after 3 pm; avoid 1–3 pm and weekend brunch.</li>
+    <li><b>El Jarocho:</b> weekday ~8–9 am, or evening.</li>
+    <li><b>Café La Pagoda:</b> 12:30 sharp or after 1:30.</li>
+    <li><b>Céfiro:</b> weekday, earlier is better.</li>
+    <li><b>Bellas Artes:</b> closes ~5 pm — golden-hour exterior, or go inside earlier.</li>
+    <li><b>Casa Azul:</b> the 5:30–6:30 pm slot is the quiet one.</li>
+  </ul></div>
+
+  <div class="label">Getting around</div>
+  <div class="card"><ul style="margin:0">
+    <li>Day 1: no car needed — one walking loop.</li>
+    <li>Day 2: one DiDi/Uber (cheap) or metro to Coyoacán, the rest on foot.</li>
+    <li>Roma → Coyoacán ~20–30 min · Roma → Centro ~10–15 min.</li>
+  </ul></div>
+
+  <div class="label">Safety &amp; comfort</div>
+  <div class="card"><ul style="margin:0">
+    <li>Roma, Condesa, Coyoacán and Centro are walkable and generally safe day and normal evening. Stay on main avenues after dark; rideshare late.</li>
+    <li>Keep phones low on busy corners.</li>
+    <li>Altitude 2,240 m (7,350 ft) — easy on alcohol day one, hydrate.</li>
+    <li>Cash for El Jarocho &amp; Villarías; most places take cards.</li>
+    <li>Nov / early spring: 10–15 °C mornings and evenings, warm midday — bring a light layer.</li>
+  </ul></div>
+
+  <div class="label">Skip to protect downtime</div>
+  <div class="card"><ul style="margin:0">
+    <li><b>Finca Don Porfirio</b> — likely closed; verify first.</li>
+    <li><b>Frida Kahlo Museum</b> — skip, or book 5:30 and let it anchor Day 2. Not both.</li>
+    <li><b>Mercado de Coyoacán</b> — 15-min browse, never a meal.</li>
+    <li><b>Zócalo by day</b> — choose Alameda Central instead.</li>
+    <li>Anything with a 30+ min line.</li>
+  </ul></div>
+</section>
+
+<!-- BACKUP -->
+<section id="backup">
+  <div class="label">If it rains ☔</div>
+  <div class="card"><ul style="margin:0">
+    <li><b>Cafebrería El Péndulo</b> — a whole bookshop-café to disappear into.</li>
+    <li><b>Céntrina</b> (Plaza de San Juan 15, Centro) — spacious; moka if cold, cold-brew naranja if warm.</li>
+    <li><b>Café La Pagoda / Café Regina</b> — dry, warm classic breakfast.</li>
+    <li><b>Bellas Artes (inside)</b> — Diego Rivera murals under cover.</li>
+    <li>Drop the walks, keep the cafés + dinner. Nothing here needs sun.</li>
+  </ul></div>
+
+  <div class="label">If you're tired or a place is closed</div>
+  <div class="card">
+    <p style="margin:0 0 8px"><b>One good coffee, one bench, one long lunch. That's a whole day.</b></p>
+    <ul style="margin:0">
+      <li>Cardinal (Condesa) → Chiquitito</li>
+      <li>Avellaneda → El Jarocho (rarely closed)</li>
+      <li>Céfiro → Café Regina or Café El Popular</li>
+      <li>Casa Virginia (closed Mondays) → Hugo or Casa Mila</li>
+      <li>Casa Azul booked but exhausted: short visit, early blue-hour dinner, done.</li>
+    </ul>
+  </div>
+  <div class="row" style="justify-content:center;margin-top:16px"><button class="btn" id="reset">↺ Reset checked stops</button></div>
+</section>
+
+<p class="foot">Te quiero, CDMX. Go slow. 💛</p>
+</main>
+
+<script>
+const gm=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q+", Ciudad de México");
+const am=q=>"https://maps.apple.com/?q="+encodeURIComponent(q+", Ciudad de México");
+
+const day1=[
+ {t:"9:00 – 10:30",h:"Breakfast & first coffee — El Péndulo",w:"Condesa · bookstore-café",q:"Cafebrería El Péndulo Condesa",
+  d:"A three-floor bookstore-café: browse, settle in, order a second thing, let the morning stretch. Calm on weekdays.",
+  more:["<b>Order:</b> chilaquiles con arrechera or huevos a la mexicana, a flat white, the huge fresh OJ. Guava biscuits are lovely.","<b>Price:</b> ~$150–260 MXN per person.","Double-check the Condesa address in Maps — there are branches in Condesa and Roma."],
+  alt:"Full? Chiquitito Café — tiny and warm, made for two."},
+ {t:"10:30 – 12:00",h:"Walk to Parque México + second coffee",w:"Cardinal Casa de Café · near Parque México",q:"Cardinal Casa de Café Condesa",
+  d:"15-minute walk through jacaranda-lined streets. Sit on a bench, watch the dogs and joggers.",
+  more:["<b>Order:</b> a cortado (the regulars' pick) and the famous double-slice banana bread to share.","<b>Price:</b> cortado ~$70–95, banana bread ~$60.","It's the small, unassuming one — confirm the street in Maps."],
+  alt:"Prefer Mexican single-origins? Camino a Comala, by the park — the Finca Los Naranjos drip."},
+ {t:"12:30 – 2:00",h:"Lunch — Café La Pagoda",w:"Condesa · old institution",q:"Café La Pagoda Condesa",
+  d:"Proper, authentic Mexican food in a busy-but-friendly room.",
+  more:["<b>Order:</b> chilaquiles verdes, huevos molcajeteados, café con leche.","<b>Price:</b> ~$120–180 MXN."],
+  note:"Arrive right at 12:30 or after 1:30 to dodge the peak.",alt:"Packed? Maque (Condesa) — great chilaquiles and conchas, slower pace."},
+ {t:"2:00 – 4:30",h:"Built-in downtime 🌿",w:"60–90 min, unscheduled",
+  d:"Do the one thing that's actually on your mind: the oval around Parque México, a shaded café doing nothing, or Condesa's gallery streets with no destination.",
+  note:"This is the point of the trip. Protect it."},
+ {t:"4:30 – 5:15",h:"Third coffee — Cardinal Café or CUMBE",w:"Roma Norte",q:"Cardinal Café Córdoba 132 Roma Norte",
+  d:"Cross back into Roma Norte — a short ride or a long walk.",
+  more:["<b>Cardinal Café</b> — Córdoba 132 (Mon–Fri 8–9, Sat 8:30–9:30, Sun 10–9). Single-origin Mexican beans. Order the café de olla cold brew + something sweet.","<b>Or CUMBE Coffee Roasters</b> — by the Cibeles-style fountain. Leafy and calm. Flat white or cold brew + a chilaquiles/tlacoyo plate."]},
+ {t:"5:15 – 6:15",h:"Golden-hour walk",w:"Fuente de Cibeles · Álvaro Obregón",q:"Fuente de Cibeles Roma Norte",
+  d:"Plane trees, long shadows, the day's first soft light. Two slow avenues, a little people-watching. Your pre-dinner reset."},
+ {t:"7:00 – 9:00",h:"Dinner — Casa Virginia ❤️",w:"Av. Monterrey 116, Roma Norte · closed Mondays",q:"Casa Virginia Monterrey 116 Roma Norte",
+  d:"Mónica Patiño's Franco-Mexican kitchen in a restored Porfirian house. Warm, low-lit — ask for a corner table.",
+  more:["<b>Order (share):</b> whatever's seasonal — Jerusalem artichoke soup, roasted figs with Gorgonzola, a slow-cooked main, a bottle of red.","<b>Price:</b> ~$600–900 MXN per person before drinks.","<b>Splurge option:</b> Sud 777 (Pedregal) or Havre 77 (Juárez) — book weeks ahead."],
+  note:"Reserve — the one non-negotiable booking.",alt:"Easier to get into: Casa Mila (Jalapa 189, hidden garden, wood oven) or Hugo (Av. Veracruz 38, natural wine, outdoor tables)."},
+ {t:"9:15 – 10:30",h:"Night walk on Álvaro Obregón",w:"Roma Norte",
+  d:"Back under the trees and string lights — or a quiet corner at Hugo, or a carajillo at El Péndulo. No club, no scene. A walk, two small drinks, the neighbourhood going soft."}
+];
+
+const day2=[
+ {t:"~8:00 (optional)",h:"Café de olla at El Jarocho",w:"Coyoacán · window counter",q:"Café El Jarocho Coyoacán",
+  d:"Start like a local — a few blocks from Avellaneda, so do both. See the ritual card below."},
+ {t:"9:30 – 11:00",h:"Morning coffee — Café Avellaneda",w:"La Higuera 40, Coyoacán · daily 8–9/10",q:"Café Avellaneda La Higuera 40 Coyoacán",
+  d:"A tiny room with very serious single-origin Mexican coffee (Chiapas, Veracruz, Oaxaca). Minimal seating — keep it short.",
+  more:["<b>Order:</b> flat white or café de olla made with good beans, plus a small cake.","Grab a 250 g bag to take home.","<b>Price:</b> ~$60–90 per cup."]},
+ {t:"11:00 – 12:30",h:"Walk Coyoacán's centre",w:"Jardín Centenario · Plaza Santa Catarina · San Juan Bautista",q:"Jardín Centenario Coyoacán",
+  d:"The 1910 park and Fuente de los Coyotes, 16th-century arcades, colourful lanes. No admission, no queues. Sit by the fountain with an agua de jamaica.",
+  note:"Optional Frida: book the Casa Azul 5:30–6:30 pm slot (quiet, blue light). If you do, it replaces this walk and the Centro golden hour."},
+ {t:"1:00 – 2:30",h:"Lunch — Pink Restaurante",w:"Salvador Novo 8, Santa Catarina",q:"Pink Restaurante Salvador Novo 8 Coyoacán",
+  d:"Casual, cozy, floral, international-leaning. ~$300–450 MXN per person.",
+  alt:"Pivoting to Centro instead? Café Regina (Regina 61) for a quiet coffee-and-bread break."},
+ {t:"2:30 – 4:00",h:"Alameda Central + Plaza de la República",w:"Centro Histórico",q:"Alameda Central",
+  d:"Shade, fountains, old plazas. A slow loop with no sights — just light and benches."},
+ {t:"4:00 – 5:30",h:"Fourth coffee — Céfiro",w:"Centro Histórico · restored historic building",q:"Céfiro café Centro Histórico",
+  d:"Beautifully designed specialty café; small Mexican producers, thoughtful toasts. Come around 4:00 before it fills.",
+  more:["<b>Order:</b> flat white or cold brew + a seasonal toast. ~$80–120.","<b>Traditional alt:</b> Café El Popular (Madero) — café con leche + huevos; or Café Villarías (cash, mostly beans)."],
+  note:"Finca Don Porfirio (the Bellas Artes view rooftop) reportedly closed in 2024 — don't plan around it."},
+ {t:"5:30 – 6:30",h:"Bellas Artes exterior + golden hour",w:"Centro Histórico",q:"Palacio de Bellas Artes",
+  d:"No need to go inside (closes ~5 pm). The façade in long evening light is the payoff.",
+  note:"Booked Casa Azul at 5:30? Then skip this — pick one golden hour, not both."},
+ {t:"7:30 – 9:30",h:"Dinner back in Coyoacán",w:"Short ride from Centro",q:"Francisco Sosa Coyoacán",
+  d:"Pick the mood:",
+  more:["<b>Cozy-casual:</b> Pink Restaurante (if you skipped it at lunch).","<b>Old-Coyoacán soul:</b> pre-dinner drinks around Jardín Centenario, then a relaxed table.","<b>Splurge:</b> Sud 777 — book weeks ahead. Otherwise a trattoria or mezcal bar off Francisco Sosa."]},
+ {t:"10:00 – 11:00",h:"Blue-hour stroll + one last café",w:"Coyoacán",q:"Café El Jarocho Coyoacán",
+  d:"End where the day began: a final café de olla at El Jarocho or a chocolate pastry, and the old streets going quiet."}
+];
+
+const coffee=[
+ ["El Péndulo","Condesa","chilaquiles, flat white, OJ","bookshop, linger"],
+ ["Cardinal Casa de Café","Condesa","cortado + banana bread","small, loved"],
+ ["Cardinal Café","Roma Norte","café de olla cold brew","institution, calm"],
+ ["CUMBE","Roma Norte (by the fountain)","flat white / cold brew","leafy"],
+ ["Café Avellaneda","Coyoacán","flat white / café de olla + beans","tiny, serious"],
+ ["Café El Jarocho","Coyoacán","café de olla + churro","the local ritual"],
+ ["Céfiro","Centro Histórico","flat white + toast","architectural"]
+];
+const outs=[
+ ["Parque México","Condesa","The neighbourhood living room — benches, jacarandas, dogs. Best before 11 am and golden hour."],
+ ["Fuente de Cibeles","Roma Norte","A little leafy pause square by Av. Coyoacán."],
+ ["Alameda Central","Centro","Fountains, shade, old plazas."],
+ ["Jardín Centenario","Coyoacán","The 1910 park, Fuente de los Coyotes, arcades."],
+ ["Viveros de Coyoacán","Coyoacán","Large, calm nursery-park — great for a longer walk."],
+ ["Av. Álvaro Obregón","Roma Norte","The best 'just walk' boulevard, especially under evening string lights."],
+ ["Plaza Santa Catarina","Coyoacán","Colourful, lively-but-quiet; good for a standing drink."]
+];
+
+let done={};try{done=JSON.parse(localStorage.getItem("cdmx-done")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("cdmx-done",JSON.stringify(done))}catch(e){}};
+
+function maps(q){return q?`<a class="btn" href="${am(q)}">📍 Apple Maps</a><a class="btn" href="${gm(q)}">🗺 Google</a>`:""}
+function renderTL(el,arr,key){
+  el.innerHTML=arr.map((s,i)=>{const id=key+i;const on=done[id];return `
+  <div class="stop ${on?"done":""}" id="s-${id}"><span class="dot"></span><div class="card">
+    <div class="time">${s.t}</div><h3>${s.h}</h3><div class="where">${s.w}</div>
+    <p style="margin:8px 0 0;font-size:15px">${s.d}</p>
+    ${s.more?`<details><summary>What to order &amp; details</summary><ul>${s.more.map(m=>`<li>${m}</li>`).join("")}</ul></details>`:""}
+    ${s.note?`<div class="note">${s.note}</div>`:""}
+    ${s.alt?`<div class="alt">↪ ${s.alt}</div>`:""}
+    <div class="row">${maps(s.q)}<button class="btn check ${on?"on":""}" data-id="${id}">${on?"✓ Done":"○ Mark done"}</button></div>
+  </div></div>`}).join("");
+}
+function renderAll(){
+  renderTL(document.getElementById("tl1"),day1,"a");
+  renderTL(document.getElementById("tl2"),day2,"b");
+}
+renderAll();
+document.getElementById("coffeelist").innerHTML=coffee.map((c,i)=>`
+ <div class="card"><div class="coffee"><div class="num">${i+1}</div><div style="flex:1">
+  <h3 style="font-size:17px;margin:0">${c[0]}</h3><div class="where">${c[1]}</div>
+  <p style="margin:6px 0 4px;font-size:14.5px"><b>Order:</b> ${c[2]}</p><span class="pill p-gold">${c[3]}</span>
+  <div class="row">${maps(c[0]+" "+c[1])}</div></div></div></div>`).join("");
+document.getElementById("outlist").innerHTML=outs.map(o=>`
+ <div class="card"><h3 style="font-size:17px">${o[0]}</h3><span class="pill p-jade">${o[1]}</span>
+ <p class="muted" style="margin:4px 0 0">${o[2]}</p><div class="row">${maps(o[0]+" "+o[1])}</div></div>`).join("");
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".check");if(b){const id=b.dataset.id;done[id]=!done[id];if(!done[id])delete done[id];save();renderAll();return}
+  if(e.target.id==="reset"){done={};save();renderAll();}
+});
+
+const views=[...document.querySelectorAll("section")].map(s=>s.id);
+function show(v){if(!views.includes(v))v="overview";
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===v));
+  document.querySelectorAll("nav button").forEach(b=>{const on=b.dataset.v===v;b.classList.toggle("on",on);if(on)b.scrollIntoView({inline:"center",block:"nearest"})});
+  window.scrollTo(0,0);}
+document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b){location.hash=b.dataset.v}});
+window.addEventListener("hashchange",()=>show(location.hash.slice(1)));
+show(location.hash.slice(1));
+</script>
+</body>
+</html>
